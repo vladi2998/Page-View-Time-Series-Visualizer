@@ -6,7 +6,8 @@ register_matplotlib_converters()
 
 # Import data (Make sure to parse dates. Consider setting index column to 'date'.)
 path = 'fcc-forum-pageviews.csv'
-df = pd.read_csv(path)
+df = pd.read_csv(path).set_index('date')
+print(df)
 
 # Clean data
 df = None
