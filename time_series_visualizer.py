@@ -36,18 +36,18 @@ def draw_bar_plot():
     df_bar['views'] = df['value']
 
     # Draw bar plot
-    fig = sns.barplot(x="year", hue="month", y = 'views',
+    fig, ax = plt.subplots(figsize=(8, 7))
+    sns.barplot(x="year", hue="month", y = 'views',
         data = df_bar, ci = None, palette = 'husl')
     plt.xlabel('Years')
     plt.ylabel('Average Page Views')
-    plt.legend(loc = 'upper left', labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'])
-    plt.show()
+    plt.legend(loc = 'upper left', labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+        , title = 'Months')
 
     # Save image and return fig (don't change this part)
-    #fig.savefig('bar_plot.png')
-    #return fig
+    fig.savefig('bar_plot.png')
+    return fig
 draw_bar_plot()
-
 def draw_box_plot():
     # Prepare data for box plots (this part is done!)
     df_box = df.copy()
