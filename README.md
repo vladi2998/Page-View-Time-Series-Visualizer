@@ -10,3 +10,6 @@ For this project we will visualize time series data using a line chart, bar char
 
 ## Catplot
 ![alt text](https://github.com/vladi2998/Page-View-Time-Series-Visualizer/blob/main/line_plot.png)
+
+## Barplot
+![alt text](https://github.com/vladi2998/Page-View-Time-Series-Visualizer/blob/main/bar_plot.png)
