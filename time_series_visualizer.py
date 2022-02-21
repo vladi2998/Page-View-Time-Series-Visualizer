@@ -7,12 +7,12 @@ register_matplotlib_converters()
 # Import data (Make sure to parse dates. Consider setting index column to 'date'.)
 path = 'fcc-forum-pageviews.csv'
 df = pd.read_csv(path).set_index('date')
-print(df)
+#print(df)
 
 # Clean data
 df = df.drop(df[(df['value'] > df['value'].quantile(0.975)) 
     | (df['value'] < df['value'].quantile(0.025))].index)
-print(df)
+#print(df)
 
 def draw_line_plot():
     # Draw line plot
@@ -26,21 +26,27 @@ def draw_line_plot():
     # Save image and return fig (don't change this part)
     fig.savefig('line_plot.png')
     return fig
-draw_line_plot()
 
 def draw_bar_plot():
     # Copy and modify data for monthly bar plot
-    df_bar = None
+    df_bar = pd.DataFrame()
+    df_bar['year'] = pd.DatetimeIndex(df.index).year
+    df_bar['month'] = pd.DatetimeIndex(df.index).month
+    df_bar.index = df.index
+    df_bar['views'] = df['value']
 
     # Draw bar plot
-
-
-
-
+    fig = sns.barplot(x="year", hue="month", y = 'views',
+        data = df_bar, ci = None, palette = 'husl')
+    plt.xlabel('Years')
+    plt.ylabel('Average Page Views')
+    plt.legend(loc = 'upper left', labels = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'])
+    plt.show()
 
     # Save image and return fig (don't change this part)
-    fig.savefig('bar_plot.png')
-    return fig
+    #fig.savefig('bar_plot.png')
+    #return fig
+draw_bar_plot()
 
 def draw_box_plot():
     # Prepare data for box plots (this part is done!)
