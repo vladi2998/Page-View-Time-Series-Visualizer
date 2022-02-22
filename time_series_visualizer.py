@@ -56,7 +56,7 @@ def draw_box_plot():
 
     # Draw box plots (using Seaborn)
     #-------First box plot-------
-    fig, ax = plt.subplots(1, 2)
+    fig, ax = plt.subplots(1, 2, figsize = (24, 8))
     plt.subplot(1, 2, 1)
     sns.boxplot(x = 'year', y = 'value', data = df_box)
     plt.xlabel('Years')
