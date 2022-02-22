@@ -6,7 +6,9 @@ register_matplotlib_converters()
 
 # Import data (Make sure to parse dates. Consider setting index column to 'date'.)
 path = 'fcc-forum-pageviews.csv'
-df = pd.read_csv(path).set_index('date')
+df = pd.read_csv(path)
+df["date"] = pd.to_datetime(df["date"])
+df = df.set_index('date')
 #print(df)
 
 # Clean data
@@ -21,11 +23,11 @@ def draw_line_plot():
     ax.set_title("Daily freeCodeCamp Forum Page Views 5/2016-12/2019", fontsize = 24)
     ax.set_xlabel("Date", fontsize = 18)
     ax.set_ylabel("Page Views", fontsize = 18)
-    plt.setp(ax, xticks = range(0, 1238, 155))
 
     # Save image and return fig (don't change this part)
     fig.savefig('line_plot.png')
     return fig
+draw_line_plot()
 
 def draw_bar_plot():
     # Copy and modify data for monthly bar plot
@@ -47,6 +49,7 @@ def draw_bar_plot():
     # Save image and return fig (don't change this part)
     fig.savefig('bar_plot.png')
     return fig
+draw_bar_plot()
 
 def draw_box_plot():
     # Prepare data for box plots (this part is done!)
