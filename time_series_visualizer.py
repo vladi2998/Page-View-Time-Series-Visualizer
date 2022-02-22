@@ -9,12 +9,10 @@ path = 'fcc-forum-pageviews.csv'
 df = pd.read_csv(path)
 df["date"] = pd.to_datetime(df["date"])
 df = df.set_index('date')
-#print(df)
 
 # Clean data
 df = df.drop(df[(df['value'] > df['value'].quantile(0.975)) 
     | (df['value'] < df['value'].quantile(0.025))].index)
-print(df)
 
 def draw_line_plot():
     # Draw line plot
@@ -27,7 +25,6 @@ def draw_line_plot():
     # Save image and return fig (don't change this part)
     fig.savefig('line_plot.png')
     return fig
-draw_line_plot()
 
 def draw_bar_plot():
     # Copy and modify data for monthly bar plot
@@ -49,7 +46,6 @@ def draw_bar_plot():
     # Save image and return fig (don't change this part)
     fig.savefig('bar_plot.png')
     return fig
-draw_bar_plot()
 
 def draw_box_plot():
     # Prepare data for box plots (this part is done!)
@@ -59,12 +55,24 @@ def draw_box_plot():
     df_box['month'] = [d.strftime('%b') for d in df_box.date]
 
     # Draw box plots (using Seaborn)
-    fig, ax = plt.subplots()
+    #-------First box plot-------
+    fig, ax = plt.subplots(1, 2)
+    plt.subplot(1, 2, 1)
     sns.boxplot(x = 'year', y = 'value', data = df_box)
-    plt.show()
+    plt.xlabel('Years')
+    plt.ylabel('Page Views')
+    plt.title('Year-wise Box Plot (Trend)')
 
+    #-------Second box plot-------
+    plt.subplot(1, 2, 2)
+    order = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+            "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    sns.boxplot(x = 'month', y = 'value', data = df_box, order = order)
+    plt.xlabel('Months')
+    plt.ylabel('Page Views')
+    plt.title('Month-wise Box Plot (Seasonality)')
 
     # Save image and return fig (don't change this part)
-    #fig.savefig('box_plot.png')
-    #return fig
+    fig.savefig('box_plot.png')
+    return fig
 draw_box_plot()
