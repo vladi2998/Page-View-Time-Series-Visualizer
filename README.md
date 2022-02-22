@@ -8,8 +8,11 @@ For this project we will visualize time series data using a line chart, bar char
 
 # Results
 
-## Catplot
+## Cat plot
 ![alt text](https://github.com/vladi2998/Page-View-Time-Series-Visualizer/blob/main/line_plot.png)
 
-## Barplot
+## Bar plot
 ![alt text](https://github.com/vladi2998/Page-View-Time-Series-Visualizer/blob/main/bar_plot.png)
+
+## Box plot
+![alt text](https://github.com/vladi2998/Page-View-Time-Series-Visualizer/blob/main/box_plot.png)
